@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <p id="time"></p>
+    <div id="anotherLine">
+<form>
+        <label for=" first_name">Nama Lengkap:</label>
+        <input type="text" id="name" onchange="upperCase()"><br>
+
+        <label for="NIM"> NIM:</label>
+        <input Type="number"><br>
+
+        <label for="Jenis kelamin"> Jenis Kelamin:</label>
+        <select>
+            <option selected disabled option>--Pilih Jenis Kelamin--</option>
+            <option>laki-Laki</option>
+            <option>Perempuan</option> 
+        </select> 
+    <br><Br>
+    </div>       
+        
+<button id="buttonsubmit">submit me</button>
+</form>
+<button onclick="addMore()">Tambah data mahasiswa</button>
+
+</body>
+        
+ <script> 
+    document.getElementById("buttonsubmit").addEventListener("click", function(){
+        alert("selamat data anda berhasil di simpan")
+    })
+    function upperCase(){
+        const name = document.getElementById("name")
+        name.value = name.value.toUpperCase();
+
+    }
+
+    function addMore() {       
+        var objDiv = document.getElementById("anotherLine"); 
+        console.log(objDiv)     
+
+        var divCreate = document.createElement("div");        
+
+        
+         divCreate.innerHTML = `
+  
+<form>
+        <label for=" first_name">Nama Lengkap:</label>
+        <input type="text" id="name" onchange="upperCase()"><br>
+
+        <label for="NIM"> NIM:</label>
+        <input Type="number"><br>
+
+        <label for="Jenis kelamin"> Jenis Kelamin:</label>
+        <select>
+            <option selected disabled option>--Pilih Jenis Kelamin--</option>
+            <option>laki-Laki</option>
+            <option>Perempuan</option> 
+        </select> 
+    <br><Br>
+    </div>       
+</form>`
+        objDiv.appendChild(divCreate);
+        
+        
+    }  
+
+    
+
+    var timeDisplay = document.getElementById("time");
+
+
+    function refreshTime() {
+    var dateString = new Date().toLocaleString("en-US", {timeZone: "America/Sao_Paulo"});
+    var formattedString = dateString.replace(", ", " - ");
+    timeDisplay.innerHTML = formattedString;
+    }
+
+    setInterval(refreshTime, 1000);
+</script>       
+</html>
