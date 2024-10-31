@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar Tugas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: green;
+        }
+        ul {
+            list-style-type: none;
+            padding: 10;
+        }
+        li {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Daftar Tugas</h1>
+<input type="text" id="taskInput" placeholder="Tambah tugas baru...">
+<button onclick="addTask()">Tambah Tugas</button>
+
+<ul id="taskList"></ul>
+
+<script>
+    function addTask() {
+        const input = document.getElementById('taskInput');
+        const taskText = input.value.trim();
+        if (taskText === '') {
+            alert('Tugas tidak boleh kosong!');
+            return;
+        }
+
+        const li = document.createElement('li');
+        li.textContent = taskText;
+
+        const editButton = document.createElement('button');
+        editButton.textContent = 'Edit';
+        editButton.onclick = () => editTask(li);
+        li.appendChild(editButton);
+
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Hapus';
+        deleteButton.onclick = () => deleteTask(li);
+        li.appendChild(deleteButton);
+
+        document.getElementById('taskList').appendChild(li);
+        input.value = '';
+    }
+
+    function editTask(li) {
+        const currentText = li.firstChild.textContent;
+        const newText = prompt('Edit tugas:', currentText);
+        if (newText !== null && newText.trim() !== '') {
+            li.firstChild.textContent = newText;
+        }
+    }
+
+    function deleteTask(li) {
+        if (confirm('Apakah Anda yakin ingin menghapus tugas ini?')) {
+            li.remove();
+        }
+    }
+</script>
+
+</body>
+</html>
